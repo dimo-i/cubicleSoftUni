@@ -6,7 +6,8 @@ const cubeController = require('./controllers/cubeController')
 
 
 router.get('/', homeController.index);
-router.get('/about', homeController.about)
+router.get('/about', homeController.about);
+
 router.use('/cube', cubeController);
 
 module.exports = router
