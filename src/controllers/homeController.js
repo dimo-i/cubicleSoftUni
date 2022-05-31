@@ -3,7 +3,10 @@ const router = require('express').Router();
 const cubeService = require('../services/cubeService')
 
 router.get('/', (req, res) => {
-    const cubes = cubeService.getAll();
+    let { search, from, to } = req.query
+
+    const cubes = cubeService.getAll(search, from, to);
+
     res.render('index', {cubes});
 });
 
