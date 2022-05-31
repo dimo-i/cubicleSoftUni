@@ -3,7 +3,7 @@ const path = require('path')
 
 const cubes = require('../db.json');
 
-
+exports.getOne = (cubeId) => cubes[cubeId]
 
 
 exports.save = (cube) => {
