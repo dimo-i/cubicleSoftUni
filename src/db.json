@@ -40,5 +40,12 @@
         "description": "New",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/480px-Rubik%27s_cube.svg.png",
         "difficultyLevel": "1"
+    },
+    {
+        "id": 6,
+        "name": "newCube",
+        "description": "Some",
+        "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+        "difficultyLevel": "1"
     }
 ]
