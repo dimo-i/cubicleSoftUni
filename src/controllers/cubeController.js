@@ -16,10 +16,10 @@ router.post('/create', async (req, res)=> {
     }
     //Save data
     try {
-        await cubeService.save(cube)
+        await cubeService.create(cube)
         res.redirect('/')
     } catch (error) {
-        res.staturs(400).send(error);
+        res.status(400).send(error);
 
     }
 
@@ -27,8 +27,9 @@ router.post('/create', async (req, res)=> {
 });
 
 
-router.get('/details/:id', (req, res) => {
-    const cube = cubeService.getOne(req.params.id)
+router.get('/details/:id', async (req, res) => {
+    const cube = await cubeService.getOne(req.params.id).lean();
+    console.log(cube)
     res.render('details', { cube })
 });
 
