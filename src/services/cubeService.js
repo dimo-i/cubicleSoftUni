@@ -20,6 +20,15 @@ exports.getAll = async (search = '', fromInput, toInput) => {
 
 exports.getOne = (cubeId) => Cube.findById(cubeId).populate('accessories');
 
+// Nested population
+// .populate({
+//     path: 'accessories',
+//     populate: {
+//         path: 'cubes',
+//         model: 'Cube',
+//     }
+// });
+
 exports.create = (cube) => Cube.create(cube);
 
 
