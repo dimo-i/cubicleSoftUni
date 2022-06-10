@@ -1,6 +1,7 @@
 const User = require('../models/User');
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const res = require('express/lib/response');
 const saltRound = 10
 
 exports.register = async ({username, password, repeatPassword}) => {
@@ -25,4 +26,20 @@ exports.register = async ({username, password, repeatPassword}) => {
     // createdUser.save();
 
     return createdUser;
+}
+
+exports.login = async ({username, password}) => {
+    let user = await User.findOne({username})
+
+    if(!user){
+        //TODO add message
+        return 
+    }
+
+    const isValid = await bcrypt.compare(password, user.password)
+    if (isValid){
+        return user
+    } else {
+        return
+    }
 }
