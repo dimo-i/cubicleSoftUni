@@ -1,8 +1,11 @@
+
+const res = require('express/lib/response');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 const User = require('../models/User');
 
-const bcrypt = require('bcrypt');
-const res = require('express/lib/response');
 const saltRound = 10
+const secret = 'asidhsaidhaisudhaisdhuasiduh'
 
 exports.register = async ({username, password, repeatPassword}) => {
     //TODO return form validation message
@@ -39,7 +42,16 @@ exports.login = async ({username, password}) => {
     const isValid = await bcrypt.compare(password, user.password)
     if (isValid){
         return user
-    } else {
-        return
     }
+    let result = new Promise((resolve, reject) => {
+        jwt.sign({_id: user._id, username: user.username}, secret, {expiresIn: '2d'}, (err, token) => {
+            if (err) {
+                reject(err)
+            }
+            resolve(token) 
+        });
+
+    });
+    return result
+    
 }

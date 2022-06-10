@@ -27,9 +27,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    let result = await authService.login(req.body);
+    let token = await authService.login(req.body);
 
-    if(!result) {
+    if(!token) {
         return res.redirect('/404')
     }
     res.redirect('/');
