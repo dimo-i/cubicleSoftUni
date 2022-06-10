@@ -40,8 +40,8 @@ exports.login = async ({username, password}) => {
     }
 
     const isValid = await bcrypt.compare(password, user.password)
-    if (isValid){
-        return user
+    if (!isValid){
+        return;
     }
     let result = new Promise((resolve, reject) => {
         jwt.sign({_id: user._id, username: user.username}, secret, {expiresIn: '2d'}, (err, token) => {
