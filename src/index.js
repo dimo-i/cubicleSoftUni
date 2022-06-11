@@ -4,13 +4,15 @@ const cookieParser = require('cookie-parser');
 const {initializeDatabase} = require('./config/database');
 const routes = require('./routes');
 const app = express();
+const {auth} = require('./middlewares/authMiddleware');
+
 
 require('./config/handlebars')(app);
 
-
-app.use(cookieParser());
 app.use('/static', express.static('public'));
+app.use(cookieParser());
 app.use(express.urlencoded({extended: false}));
+app.use(auth)
 app.use(routes);
 
 initializeDatabase()

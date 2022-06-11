@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const User = require('../models/User');
 
-const saltRound = 10
-const secret = 'asidhsaidhaisudhaisdhuasiduh'
+const {secret, saltRounds} = require('../config/constants')
+
 
 exports.register = async ({username, password, repeatPassword}) => {
     //TODO return form validation message
@@ -13,7 +13,7 @@ exports.register = async ({username, password, repeatPassword}) => {
         return false;
     }
 
-    let hashedPassword = await bcrypt.hash(password, saltRound);
+    let hashedPassword = await bcrypt.hash(password, saltRounds);
 
     let createdUser = User.create({
         username,
