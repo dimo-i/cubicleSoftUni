@@ -57,7 +57,7 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
 router.get('/:cubeId/edit', isAuth, async (req, res) => {
     const cube = await cubeService.getOne(req.params.cubeId).lean();
 
-    if (cube.owner !== req.user._id){
+    if (cube.owner != req.user._id){
         //TODO add message
         return res.redirect('/404')
     }

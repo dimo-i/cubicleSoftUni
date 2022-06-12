@@ -1,4 +1,5 @@
 
+const { append } = require('express/lib/response');
 const jwt = require('jsonwebtoken');
 const {promisify} = require('util');
 const {sessionName, secret} = require('../config/constants');
@@ -11,6 +12,8 @@ exports.auth = async (req, res, next) => {
         try{
             let decodedToken = await jwtVerify(token, secret);
             req.user = decodedToken;
+            
+            res.locals.user = decodedToken;
 
         } catch(err) {
             console.log(err)
